@@ -12,22 +12,27 @@ import CheckGreenRound from "../check_green_round";
 import { layoutStyles } from "../../styles/layout";
 
 // utilities
-import { colors } from "../../utilities/colors";
-import ButtonOne from "../button-one";
+import { brandcolors, colors } from "../../utilities/colors";
+import ButtonOne from "../custom-buttons/one";
+import { textStyles } from "../../styles/text-styles";
+import BackDrop from "../backdrop";
+import { setGreencheck } from "../../redux/action";
+import { useDispatch, useSelector } from "react-redux";
 
 
-const StepThree = ({ navigationFunc }) => {
+const StepThree = () => {
 
-    const [greenCheck, setGreenCheck] = useState(null)
+    const { greencheck } = useSelector(state=>state.appReducer)
+    const dispatch = useDispatch()
+
 
     const handleSeedConfirmation = () => {
-        setGreenCheck(true)
+        dispatch(setGreencheck(true))
     }
 
     return ( 
         <View style={styles.content}>
-
-            {!greenCheck ? <>
+            <>
                 <Text style={[layoutStyles.brand_header, {marginBottom: 20}]}>Confirm Seed Phrase</Text>
                 <Text style={[layoutStyles.l1_r, layoutStyles.mgb_20]}>
                     Select each word in the other it was presented to you
@@ -38,130 +43,86 @@ const StepThree = ({ navigationFunc }) => {
                         <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
                             <Text style={[layoutStyles.l1_r]}>1</Text>
                             <View style={[styles.seed_phrase_box]}>
-                                <Text style={styles.seed_text}></Text>
-                            </View>
-                        </View>
-                        <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
-                            <Text style={[layoutStyles.l1_r]}>2</Text>
-                            <View style={[styles.seed_phrase_box]}>
-                                <Text style={styles.seed_text}></Text>
-                            </View>
-                        </View>
-                        <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
-                            <Text style={[layoutStyles.l1_r]}>3</Text>
-                            <View style={[styles.seed_phrase_box]}>
-                                <Text style={styles.seed_text}></Text>
-                            </View>
-                        </View>
-                        <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
-                            <Text style={[layoutStyles.l1_r]}>4</Text>
-                            <View style={[styles.seed_phrase_box]}>
-                                <Text style={styles.seed_text}></Text>
-                            </View>
-                        </View>
-                        <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
-                            <Text style={[layoutStyles.l1_r]}>5</Text>
-                            <View style={[styles.seed_phrase_box]}>
-                                <Text style={styles.seed_text}></Text>
-                            </View>
-                        </View>
-                        <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
-                            <Text style={[layoutStyles.l1_r]}>6</Text>
-                            <View style={[styles.seed_phrase_box]}>
-                                <Text style={styles.seed_text}></Text>
+                                <Text style={[textStyles.reg16, { color: brandcolors.pry[500], textAlign: 'center' }]}></Text>
                             </View>
                         </View>
                         <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
                             <Text style={[layoutStyles.l1_r]}>7</Text>
                             <View style={[styles.seed_phrase_box]}>
-                                <Text style={styles.seed_text}></Text>
+                                <Text style={[textStyles.reg16, { color: brandcolors.pry[500], textAlign: 'center' }]}></Text>
+                            </View>
+                        </View>
+                        <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
+                            <Text style={[layoutStyles.l1_r]}>2</Text>
+                            <View style={[styles.seed_phrase_box]}>
+                                <Text style={[textStyles.reg16, { color: brandcolors.pry[500], textAlign: 'center' }]}></Text>
                             </View>
                         </View>
                         <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
                             <Text style={[layoutStyles.l1_r]}>8</Text>
                             <View style={[styles.seed_phrase_box]}>
-                                <Text style={styles.seed_text}></Text>
+                                <Text style={[textStyles.reg16, { color: brandcolors.pry[500], textAlign: 'center' }]}></Text>
+                            </View>
+                        </View>
+                        <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
+                            <Text style={[layoutStyles.l1_r]}>3</Text>
+                            <View style={[styles.seed_phrase_box]}>
+                                <Text style={[textStyles.reg16, { color: brandcolors.pry[500], textAlign: 'center' }]}></Text>
                             </View>
                         </View>
                         <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
                             <Text style={[layoutStyles.l1_r]}>9</Text>
                             <View style={[styles.seed_phrase_box]}>
-                                <Text style={styles.seed_text}></Text>
+                                <Text style={[textStyles.reg16, { color: brandcolors.pry[500], textAlign: 'center' }]}></Text>
+                            </View>
+                        </View>
+                        <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
+                            <Text style={[layoutStyles.l1_r]}>4</Text>
+                            <View style={[styles.seed_phrase_box]}>
+                                <Text style={[textStyles.reg16, { color: brandcolors.pry[500], textAlign: 'center' }]}></Text>
                             </View>
                         </View>
                         <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
                             <Text style={[layoutStyles.l1_r]}>10</Text>
                             <View style={[styles.seed_phrase_box]}>
-                                <Text style={styles.seed_text}></Text>
+                                <Text style={[textStyles.reg16, { color: brandcolors.pry[500], textAlign: 'center' }]}></Text>
+                            </View>
+                        </View>
+                        <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
+                            <Text style={[layoutStyles.l1_r]}>5</Text>
+                            <View style={[styles.seed_phrase_box]}>
+                                <Text style={[textStyles.reg16, { color: brandcolors.pry[500], textAlign: 'center' }]}></Text>
                             </View>
                         </View>
                         <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
                             <Text style={[layoutStyles.l1_r]}>11</Text>
                             <View style={[styles.seed_phrase_box]}>
-                                <Text style={styles.seed_text}></Text>
+                                <Text style={[textStyles.reg16, { color: brandcolors.pry[500], textAlign: 'center' }]}></Text>
+                            </View>
+                        </View>
+                        <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
+                            <Text style={[layoutStyles.l1_r]}>6</Text>
+                            <View style={[styles.seed_phrase_box]}>
+                                <Text style={[textStyles.reg16, { color: brandcolors.pry[500], textAlign: 'center' }]}></Text>
                             </View>
                         </View>
                         <View style={[layoutStyles.justify_center, layoutStyles.mgb_20, layoutStyles.gap_10]}>
                             <Text style={[layoutStyles.l1_r]}>12</Text>
                             <View style={[styles.seed_phrase_box]}>
-                                <Text style={styles.seed_text}></Text>
+                                <Text style={[textStyles.reg16, { color: brandcolors.pry[500], textAlign: 'center' }]}></Text>
                             </View>
                         </View>
-                    </View>
-                </View>
-
-                <View style={[layoutStyles.justify_space_btwn, layoutStyles.flex_wrap]}>
-                    <View style={[styles.seed_phrase_box, layoutStyles.mgb_10, { borderColor: colors.btn.btncolor }]}>
-                        <Text style={[styles.seed_text]}>vessel</Text>
-                    </View>
-                    <View style={[styles.seed_phrase_box, layoutStyles.mgb_10, { borderColor: colors.btn.btncolor }]}>
-                        <Text style={[styles.seed_text]}>stage</Text>
-                    </View>
-                    <View style={[styles.seed_phrase_box, layoutStyles.mgb_10, { borderColor: colors.btn.btncolor }]}>
-                        <Text style={[styles.seed_text]}>stamp</Text>
-                    </View>
-                    <View style={[styles.seed_phrase_box, layoutStyles.mgb_10, { borderColor: colors.btn.btncolor }]}>
-                        <Text style={[styles.seed_text]}>snakers</Text>
-                    </View>
-                    <View style={[styles.seed_phrase_box, layoutStyles.mgb_10, { borderColor: colors.btn.btncolor }]}>
-                        <Text style={[styles.seed_text]}>hurt</Text>
-                    </View>
-                    <View style={[styles.seed_phrase_box, layoutStyles.mgb_10, { borderColor: colors.btn.btncolor }]}>
-                        <Text style={[styles.seed_text]}>study</Text>
-                    </View>
-                    <View style={[styles.seed_phrase_box, layoutStyles.mgb_10, { borderColor: colors.btn.btncolor }]}>
-                        <Text style={[styles.seed_text]}>chair</Text>
-                    </View>
-                    <View style={[styles.seed_phrase_box, layoutStyles.mgb_10, { borderColor: colors.btn.btncolor }]}>
-                        <Text style={[styles.seed_text]}>wield</Text>
-                    </View>
-                    <View style={[styles.seed_phrase_box, layoutStyles.mgb_10, { borderColor: colors.btn.btncolor }]}>
-                        <Text style={[styles.seed_text]}>tree</Text>
-                    </View>
-                    <View style={[styles.seed_phrase_box, layoutStyles.mgb_10, { borderColor: colors.btn.btncolor }]}>
-                        <Text style={[styles.seed_text]}>regret</Text>
-                    </View>
-                    <View style={[styles.seed_phrase_box, layoutStyles.mgb_10, { borderColor: colors.btn.btncolor }]}>
-                        <Text style={[styles.seed_text]}>stone</Text>
-                    </View>
-                    <View style={[styles.seed_phrase_box, layoutStyles.mgb_10, { borderColor: colors.btn.btncolor }]}>
-                        <Text style={[styles.seed_text]}>worth</Text>
                     </View>
                 </View>
 
                 <View style={styles.test_end}>
                     <ButtonOne 
                         btnText={'Confirm'}
+                        status={false}
                         buttonPress={handleSeedConfirmation}
                     />
                 </View>
-            </> : null}
-
-            {greenCheck ? <>
-                <CheckGreenRound 
-                    doneFunc={navigationFunc}
-                />
-            </> : null}
+            </>
         </View>
     );
 }
@@ -176,26 +137,21 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     seed_phrase_box: {
-        width: 100,
-        paddingVertical: 3,
-        borderRadius: 4,
+        width: 112,
+        height: 32,
+        borderRadius: 8,
         borderWidth: 1,
-        borderColor: colors.btn.btnbg
-    },
-    seed_text: {
-        fontSize: 12,
-        fontWeight: '400',
-        color: '#000000',
-        textAlign: 'center',
+        borderColor: brandcolors.pry[500],
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     manual_box: {
         maxWidth: '100%',
-        backgroundColor: colors.neutrals.neu2,
+        backgroundColor: brandcolors.grey[100],
         paddingVertical: 20, 
         paddingHorizontal: 35,
-        borderRadius: 10,
-        borderWidth: .2,
-        borderColor: colors.neutrals.neu3
+        borderRadius: 16,
     },
 })
  

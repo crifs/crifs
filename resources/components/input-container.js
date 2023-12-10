@@ -1,31 +1,31 @@
-import { View, TextInput, Text, StyleSheet, Image } from "react-native";
+import { View, TextInput, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { layoutStyles } from "../styles/layout";
-import { colors } from "../utilities/colors";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { brandcolors, colors } from "../utilities/colors";
+import { textStyles } from "../styles/text-styles";
+import IconGeneralF from "./icon-general-f";
 
 
 
-const InputCont = ({ labelText, placeholder, changeFunc, iconRight, iconSrc, iconFunc, stEntry, inputValue }) => {
+const InputCont = ({ boxStyles, labelText, placeholder, keyboard, changeFunc, iconRight, iconSrc, iconFunc, stEntry, inputValue }) => {
     return ( 
-        <View style={styles.input_box}>
-            <Text style={[layoutStyles.b1_m, {marginBottom: 10}]}>{labelText}</Text>
+        <View style={[styles.input_box, boxStyles]}>
+            <Text style={[textStyles.reg14, layoutStyles.mgb_8, {color: brandcolors.grey[800]}]}>{labelText}</Text>
             <View style={{ position: 'relative' }}>
                 {iconRight  === true ? 
-                    <TouchableOpacity 
-                        style={styles.icon_right_box}
-                        onPress={iconFunc}
-                    >
-                        <Image 
-                            source={iconSrc}
-                            style={styles.icon_right}
-                            /> 
-                    </TouchableOpacity>
+                    <IconGeneralF 
+                        boxstyle={[styles.icon_right_box, { width: 24, height: 24, }]}
+                        iconstyle={{ width: 20, height: 20 }}
+                        iconsrc={iconSrc}
+                        ripplecolor={brandcolors.ripple}
+                        iconfunc={iconFunc}
+                    />
                 : null}
                 <TextInput 
                     placeholder={placeholder}
+                    keyboardType={keyboard}
                     onChangeText={changeFunc}
-                    style={styles.input}
-                    placeholderTextColor={colors.neutrals.neu3}
+                    style={[styles.input, textStyles.reg16]}
+                    placeholderTextColor={brandcolors.grey[500]}
                     secureTextEntry={stEntry}
                     value={inputValue}
                 />
@@ -38,33 +38,24 @@ const InputCont = ({ labelText, placeholder, changeFunc, iconRight, iconSrc, ico
 const styles = StyleSheet.create({
     input_box: {
         position: 'relative',
+        // backgroundColor: 'yellow'
     },
     input: {
-        backgroundColor: colors.neutrals.neu2,
-        borderColor: colors.neutrals.neu3,
-        borderWidth: .5,
-        borderRadius: 5,
         width: '100%',
-        paddingVertical: 11,
-        paddingLeft: 10,
-        fontSize: 12,
-        fontWeight: '400',
-        color : colors.neutrals.neu6,
+        color: brandcolors.grey[800],
+        backgroundColor: brandcolors.bg,
+        borderColor: brandcolors.grey[500],
+        borderWidth: 1,
+        borderRadius: 8,
+        padding: 8,
         position: 'relative',
     },
     icon_right_box: {
-        // width: '20%',
         // backgroundColor: 'red',
-        // height: '',
         position: 'absolute',
-        // bottom: 30,
-        // right: 30,
-        // zIndex: 999
-    },
-    icon_right: {
-        width: 15,
-        height: 10,
-        // resizeMode: 'contain',
+        top: 11,
+        right: 8,
+        zIndex: 999,
     },
 })
 
