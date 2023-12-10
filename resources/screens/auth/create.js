@@ -14,13 +14,16 @@ import StepOne from "../../components/create-account/step-one";
 import { layoutStyles } from "../../styles/layout";
 
 // utilities
-import { colors } from "../../utilities/colors";
+import { brandcolors, colors } from "../../utilities/colors";
 import { icons } from "../../utilities/icons";
 import StepThree from "../../components/create-account/step-three";
+import IconGeneralF from "../../components/icon-general-f";
+import BackDrop from "../../components/backdrop";
+import CheckGreenRound from "../../components/check_green_round";
 
 const CreateAccount = ({ navigation }) => {
 
-    const { progressvalue } = useSelector(state=>state.appReducer);
+    const { progressvalue, greencheck } = useSelector(state=>state.appReducer);
     const dispatch = useDispatch()
 
     handleArrowback = () => {
@@ -32,46 +35,66 @@ const CreateAccount = ({ navigation }) => {
         }
     }
 
+    const doneNavFunc = () => {
+        navigation.replace("TabsScreen")
+    }
+
     return (
-        <View style={layoutStyles.flex_one_default}>
-            <ScrollView style={styles.content} contentContainerStyle={{ flexGrow: 1 }}>
-                <View style={{ marginBottom: 40, flex: 1, }}>                    
-                    {progressvalue === 2 || progressvalue === 3 ? <ArrorBackIcon arrowFunc={handleArrowback} /> : null}
-                    <LogoRight 
-                        logoStyles={{ marginBottom: 10 }}
-                    />
+        <>
+        
+            {greencheck ? <BackDrop /> : null}
 
-                    <CAProgressBar 
-                        progressValue={progressvalue}
-                    />
+            {greencheck ? <>
+                <CheckGreenRound 
+                    doneFunc={doneNavFunc}
+                />
+            </> : null}
 
-                    {progressvalue === 1 ?
-                        <StepOne /> 
-                    : null}
+            <View style={[layoutStyles.generalFrame, layoutStyles.generalHPad, { paddingTop: 40 }]}>
 
-                    {progressvalue === 2 ? 
-                        <StepTwo />
-                    : null}
 
-                    {progressvalue === 3 ?
-                        <StepThree
-                            navigationFunc={() => navigation.navigate("Home")}
+                {progressvalue === 2 || progressvalue === 3 ? 
+                    <IconGeneralF 
+                        boxstyle={{ width: 24, height: 24 }}
+                        iconstyle={{ width: 7, height: 16 }}
+                        iconsrc={icons.dark.angle_left}
+                        ripplecolor={brandcolors.ripple}
+                        iconfunc={handleArrowback} 
+                    /> 
+                : null}
+                <ScrollView style={styles.content} contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
+                    <View style={{ marginBottom: 40, flex: 1, marginTop: 50 }}>  
+                        <CAProgressBar 
+                            progressValue={progressvalue}
                         />
-                    : null}
-                </View>
 
-                
-            </ScrollView>
-        </View>
+                        {progressvalue === 1 ?
+                            <StepOne /> 
+                        : null}
+
+                        {progressvalue === 2 ? 
+                            <StepTwo />
+                        : null}
+
+                        {progressvalue === 3 ?
+                            <StepThree />
+                        : null}
+                    </View>
+
+                    
+                </ScrollView>
+
+            </View>
+
+        
+        
+        </>
     );
 }
  
 const styles = StyleSheet.create({
     content: {
-        // backgroundColor: 'red',
         flex: 1,
-        marginTop: 25,
-        // marginBottom: 40,
         position: 'relative',
     },
 })

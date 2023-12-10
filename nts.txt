@@ -1,0 +1,117 @@
+
+_-_remebre to do last after all_-_
+
+// remeber to add on refresh to the home tokens flatlist
+
+
+
+
+
+_-_trash (can decide to use later)_-_
+{/* {tokens ? tokens.map((token) => (
+                    <View style={[layoutStyles.align_center_justify_space_btwn, styles.token_box]} key={token.ticker}>
+                        <View style={[layoutStyles.gap_10, layoutStyles.row_align_center]}>
+                            <View style={[styles.token_logo_box]}>
+                                <Image 
+                                    source={token.logo}
+                                    style={[layoutStyles.icon_11, {height: 15}]}
+                                />
+                            </View>
+                            <View>
+                                <Text style={[layoutStyles.bp_2_dc]}>{token.ticker}</Text>
+                                <Text style={[layoutStyles.l1_r]}>{token.name}</Text>
+                            </View>
+                        </View>
+
+                        <View>
+                            <Text style={[layoutStyles.bp_2]}>{token.amount}</Text>
+                            <Text style={[layoutStyles.l1_m]}>$ {token.amount_in_bucks}</Text>
+                        </View>
+                    </View>
+                )) : null} */}
+
+
+
+
+
+
+style={({ pressed }) => [layoutStyles.align_center_justify_space_btwn, modalStyles.cat_box, 
+                                    { backgroundColor: pressed ? 'rgba(0, 0, 0, 0.3)' : colors.neutrals.neu1 }]}
+
+
+{/* {(e.imgs).map((img) => 
+                        <Image 
+                        source={{ uri: img}}
+                        style={previewStyles.swiper_img}
+                        key={img}
+                        />
+                    )} */}
+
+
+
+
+
+
+<Modal
+                    visible={assetsmodal}
+                    transparent={true}
+                    onRequestClose={()=>dispatch(setAssetsModal(false))}
+                    animationType='slide'
+                    hardwareAccelerated={true}
+                >
+                    <BackDrop dropPress={() => dispatch(setAssetsModal(false))} />
+                    <View style={modalStyles.modal_container}>
+                        <View style={modalStyles.asset_cat_box}>
+                            <View style={modalStyles.asset_cat_head}>
+                                <Text style={layoutStyles.a1_m}>Select Category</Text>
+                            </View>
+
+                            <View style={[modalStyles.cat_body]}>
+                                {assetsCategories ? 
+                                    assetsCategories.map((cat) => (
+                                        <Pressable 
+                                            key={cat.value}
+                                            style={[layoutStyles.align_center_justify_space_btwn, modalStyles.cat_box,]}
+                                            android_ripple={{ color: 'rgba(0, 0, 0, 0.3)' }}
+                                            onPress={() => {
+                                                dispatch(setAssetsCat(cat.value))
+                                                dispatch(setAssetsModal(false))
+                                            }}
+                                        >
+                                            <View style={[layoutStyles.gap_10, layoutStyles.row_align_center]}>
+                                                <View style={[modalStyles.cat_logo_box]}>
+                                                    <Image 
+                                                        source={cat.logo}
+                                                        style={[{width: cat.size.width, height: cat.size.width}]}
+                                                    />
+                                                </View>
+                                                <View>
+                                                    <Text style={[layoutStyles.bp_2_dc]}>{cat.label}</Text>
+                                                    <Text style={[layoutStyles.l1_r]}>{cat.amount} tokens</Text>
+                                                </View>
+                                            </View>
+
+                                            <View>
+                                                {cat.value === assetcat ? 
+                                                    <View style={modalStyles.cat_check_box}>
+                                                        <Image 
+                                                            source={icons.check_dark}
+                                                            style={[layoutStyles.icon_10, {height: 7}]}
+                                                        />
+                                                    </View>
+                                                : null}
+                                            </View>
+                                        </Pressable>
+                                    ))
+                                : null}
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+
+
+{recent ? 
+    <View style={styles.recent_container}>
+        <Recent />
+    </View>
+: null}
