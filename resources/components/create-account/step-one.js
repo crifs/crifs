@@ -5,14 +5,15 @@ import { setProgressValue } from '../../redux/action';
 
 // components
 import InputCont from '../input-container';
-import ButtonOne from '../button-one';
+import ButtonOne from '../custom-buttons/one';
 
 // styles
 import { layoutStyles } from '../../styles/layout';
 
 // utilities
-import { colors } from "../../utilities/colors";
+import { brandcolors, colors } from "../../utilities/colors";
 import { icons } from "../../utilities/icons";
+import { textStyles } from '../../styles/text-styles';
 
 
 const StepOne = () => {
@@ -21,6 +22,7 @@ const StepOne = () => {
     const dispatch = useDispatch()
     const [password, setPassword] = useState(null)
     const [showpassword, setShowPassword] = useState(null)
+    const [showcpassword, setShowcPassword] = useState(null)
     const [confirmpass, setConfirmpass] = useState(null)
     const [biometricstatus, setBiometrics] = useState(null)
     const [errorstate, setErrorstate] = useState(null)
@@ -30,6 +32,13 @@ const StepOne = () => {
             setShowPassword(true)
         } else {
             setShowPassword(null)
+        }
+    }
+    const handleCShowPassword = () => {
+        if(!showcpassword) {
+            setShowcPassword(true)
+        } else {
+            setShowcPassword(null)
         }
     }
 
@@ -58,41 +67,43 @@ const StepOne = () => {
 
     return ( 
         <View style={styles.content}>
-            <Text style={[layoutStyles.brand_header, {marginBottom: 20}]}>Create a password</Text>
-            <Text style={[layoutStyles.b1_r, { marginBottom: 30 }]}>Sart your journey by creating a password</Text>
 
-            <InputCont 
-                labelText={"Password"}
-                placeholder={"Set a password"}
-                iconRight={true}
-                iconSrc={showpassword ? icons.eye_slash : icons.eye}
-                iconFunc={handleShowPassword}
-                stEntry={showpassword ? false : true}
-                changeFunc={(value) => setPassword(value)}
-                inputValue={password}
-            />
-
-            <View style={[layoutStyles.flex_row, { marginBottom: 20, marginTop: 5 }]}>
-                <Text style={[layoutStyles.l3_r,]}>Password Strength: </Text>
-                <Text style={[layoutStyles.l3_r, { color: colors.oth.blue1 }]}>Fair</Text>
+            <View style={[layoutStyles.mgb_44]}>
+                <Text style={[textStyles.bold20, layoutStyles.mgb_8, {color: brandcolors.sec[500]}]}>Create a password</Text>
+                <Text style={[textStyles.reg14, { color: brandcolors.grey[800] }]}>Start your journey by creating a password</Text>
             </View>
 
-            <InputCont 
-                labelText={"Confirm password"}
-                placeholder={"Retype password"}
-                iconRight={true}
-                iconSrc={showpassword ? icons.eye_slash : icons.eye}
-                iconFunc={handleShowPassword}
-                stEntry={showpassword ? false : true}
-                changeFunc={(value) => setConfirmpass(value)}
-                inputValue={confirmpass}
-            />
+            <View style={[layoutStyles.mgb_40]}>
+                <InputCont 
+                    labelText={"Password"}
+                    placeholder={"Set a password"}
+                    iconRight={true}
+                    iconSrc={showpassword ? icons.eye_slash : icons.eye}
+                    iconFunc={handleShowPassword}
+                    stEntry={showpassword ? false : true}
+                    changeFunc={(value) => setPassword(value)}
+                    inputValue={password}
+                    boxStyles={layoutStyles.mgb_16}
+                />
 
-            {errorstate ? 
-                <Text style={[layoutStyles.e1_m, { marginTop: 5 }]}>{errorstate}</Text>
-            : null}
+                <InputCont 
+                    labelText={"Confirm password"}
+                    placeholder={"Retype password"}
+                    iconRight={true}
+                    iconSrc={showcpassword ? icons.eye_slash : icons.eye}
+                    iconFunc={handleCShowPassword}
+                    stEntry={showcpassword ? false : true}
+                    changeFunc={(value) => setConfirmpass(value)}
+                    inputValue={confirmpass}
+                    boxStyles={layoutStyles.mgb_8}
+                />
+                {errorstate ? 
+                    <Text style={[layoutStyles.e1_m, { marginTop: 5 }]}>{errorstate}</Text>
+                : null}
+            </View>
 
-            <View style={[layoutStyles.align_center_justify_space_btwn, { marginTop: 20 }]}>
+
+            {/* <View style={[layoutStyles.align_center_justify_space_btwn, { marginTop: 20 }]}>
                 <Text style={[layoutStyles.l1_m, {color: colors.neutrals.neu4}]}>Unlock with Biometrics</Text>
                 <TouchableOpacity 
                     style={[styles.toggle_item, { backgroundColor: biometricstatus ? colors.btn.btnbg : colors.neutrals.neu3, }]} 
@@ -100,11 +111,12 @@ const StepOne = () => {
                 >
                     <View style={[styles.toggle_item_inner, { backgroundColor: biometricstatus ? colors.btn.btncolor : colors.neutrals.white, alignSelf: biometricstatus ? 'flex-end' : 'flex-start' }]}></View>
                 </TouchableOpacity>
-            </View>
+            </View> */}
 
-            <View style={styles.test_end}>
+            <View style={[]}>
                 <ButtonOne 
                     btnText={'Next'}
+                    status={false}
                     buttonPress={handleProgress}
                 />
             </View>
