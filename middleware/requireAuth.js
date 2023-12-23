@@ -1,0 +1,1 @@
+// purpose of file: funtion that generates token to authenticate a user before making request to the database : if not anyone would be able to make request to our database leading to security breach
